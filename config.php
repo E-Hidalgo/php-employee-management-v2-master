@@ -13,7 +13,7 @@ define('REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
 // Valores de rutas
 /////////////////////////////////////
 
-define('FOLDER_PATH', '/php-employee-management-v2'); //! ADDED FORKS PATH
+define('FOLDER_PATH', '/FORKS/php-employee-management-v2'); //! ADDED FORKS PATH
 
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 

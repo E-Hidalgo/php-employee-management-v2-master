@@ -37,8 +37,11 @@ class View
    */
   protected function render()
   {
+
     if (class_exists($this->controller_name)) {
       $file_name = str_replace('Controller', '', $this->controller_name);
+      var_dump($file_name);
+      die();
       $this->template = $this->getContentTemplate($file_name);
       echo $this->template;
     } else {
@@ -51,6 +54,7 @@ class View
    */
   protected function getContentTemplate($file_name)
   {
+
     $file_path = ROOT . PATH_VIEWS . "$file_name" . '.php';
     if (is_file($file_path)) {
       extract($this->params);
