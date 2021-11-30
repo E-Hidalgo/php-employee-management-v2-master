@@ -1,13 +1,13 @@
-const dataPath = "../resources/employees.json";
-const controllerEmpl = "./library/employeeController.php";
+const dataPath = "../employee/getAllEmployees";
+//const controllerEmpl = "./library/employeeController.php";
 function changePage({ item }) {
     window.location.replace(`employee.php?employeeId=${item.id}`)
     console.log(item);
 }
 
-$.getJSON(dataPath).done(function (employeesData) {
+$.ajax(dataPath).done(function (employeesData) {
     $("#jsGrid").jsGrid({
-        data: employeesData,
+        data: JSON.parse(employeesData),
         width: "100%",
         height: "auto",
         inserting: true,
@@ -20,34 +20,38 @@ $.getJSON(dataPath).done(function (employeesData) {
         autoload: true,
         rowClick: changePage,
 
+        onItemInserted: function(item) {
+          console.log(item)
+        },
 
         controller: {
             insertItem: function (item) {
+              console.log(item);
                 return $.ajax({
                     type: "POST",
-                    url: controllerEmpl,
-                    data: JSON.stringify({ 'data': item }),
+                    url: '../employee/add',
+                    data: JSON.stringify(item),
                     success: function () {
-                        document.location.reload(true);
+                        //document.location.reload(true);
                     }
                 })
             },
 
             deleteItem: (item) => $.ajax({
-                type: "DELETE",
-                url: "./library/employeeController.php",
+                type: "POST",
+                url: "../employee/delete",
                 data: item,
                 success: function () {
-                    document.location.reload(true);
+                    //document.location.reload(true);
                 }
             }),
 
             updateItem: (item) => $.ajax({
-                type: "PATCH",
-                url: controllerEmpl,
+                type: "POST",
+                url: '../employee/update',
                 data: JSON.stringify({ 'data': item }),
                 success: function () {
-                    document.location.reload(true);
+                    //document.location.reload(true);
 
                 }
             }),
@@ -60,7 +64,7 @@ $.getJSON(dataPath).done(function (employeesData) {
             css: 'bordersAndBackground'
         },
         {
-            name: "name",
+            name: "firstName",
             title: "Name",
             type: "text",
             width: 100,
@@ -110,7 +114,7 @@ $.getJSON(dataPath).done(function (employeesData) {
 
         },
         {
-            name: 'streetAddress',
+            name: 'streetAdress',
             title: 'Address',
             type: 'text',
             width: '100',
@@ -128,7 +132,7 @@ $.getJSON(dataPath).done(function (employeesData) {
             css: 'bordersAndBackground'
         },
         {
-            name: 'state',
+            name: 'stateName',
             title: 'State',
             type: 'text',
             width: '50',
