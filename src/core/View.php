@@ -40,8 +40,6 @@ class View
 
     if (class_exists($this->controller_name)) {
       $file_name = str_replace('Controller', '', $this->controller_name);
-      var_dump($file_name);
-      die();
       $this->template = $this->getContentTemplate($file_name);
       echo $this->template;
     } else {

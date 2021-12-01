@@ -1,7 +1,6 @@
 <!-- TODO Employee view -->
 
 <?php
-
 if (isset($employees)) {
   # render JS grid
 

@@ -22,7 +22,9 @@ class EmployeeController extends Controller
 
   function all()
   {
+
     $employees = 'helo';
+    echo $employees;
     $this->render(__class__, array('employees' => $employees));
   }
 

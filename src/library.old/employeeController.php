@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
 // print_r($newData);
 
-var_dump($_SERVER["REQUEST_METHOD"]);
+// var_dump($_SERVER["REQUEST_METHOD"]);
 
 
 

@@ -34,7 +34,6 @@ if (!CoreHelper::validateController($controller)) {
 $controller .= 'Controller';
 require PATH_CONTROLLERS . "{$controller}.php";
 
-var_dump(PATH_CONTROLLERS . "{$controller}.php");
 
 
 if (!CoreHelper::validateMethodController($controller, $method))

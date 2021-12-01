@@ -49,7 +49,7 @@ class Router
    */
   public function setController()
   {
-    var_dump($this->uri = explode('/', URI));
+    $this->uri = explode('/', URI);
     $this->controller = $this->uri[3] === '' ? DEFAULT_CONTROLLER : $this->uri[3];
   }
 
