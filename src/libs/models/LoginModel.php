@@ -16,8 +16,6 @@ class LoginModel extends Model
   {
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $sql = "SELECT email, encrypted_password FROM users WHERE email = '{$email}'";
-    var_dump($this->db->query($sql));
-    die();
     return $this->db->query($sql);
   }
 

@@ -22,20 +22,19 @@ class LoginController extends Controller
 
   public function exec()
   {
-    // echo "hola";
     $this->render(__CLASS__);
   }
 
   public function signin($request_params)
   {
-    echo "hola";
-    var_dump($request_params);
 
     if ($this->verify($request_params)) return $this->renderErrorMessage('El email y password son obligatorios');
-
     $result = $this->model->signIn($request_params['loginMail']);
 
     $result = $result->fetch();
+    echo "<pre>";
+    var_dump($result);
+
 
     if (count($result) === 0) return $this->renderErrorMessage("El email {$request_params['loginMail']} no fue encontrado");
 
@@ -43,7 +42,7 @@ class LoginController extends Controller
 
     $this->session->init();
     $this->session->add('email', $result['email']);
-    header('location: ' . FOLDER_PATH . '/employee/all');
+    header('location: ' . FOLDER_PATH . '/Employee/all');
   }
 
   private function verify($request_params)
