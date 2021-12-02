@@ -32,8 +32,8 @@ class LoginController extends Controller
     $result = $this->model->signIn($request_params['loginMail']);
 
     $result = $result->fetch();
-    echo "<pre>";
-    var_dump($result);
+    // echo "<pre>";
+    // var_dump($result);
 
 
     if (count($result) === 0) return $this->renderErrorMessage("El email {$request_params['loginMail']} no fue encontrado");

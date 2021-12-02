@@ -15,15 +15,13 @@ class EmployeeController extends Controller
 
   public function exec()
   {
-
-
     $this->render(__class__, array('path_inicio' => $this->path_inicio));
   }
 
   function all()
   {
-    $employees = "Hello";
-    echo $employees;
+    $model = new EmployeeModel();
+    $employees = $model->getAll();
     $this->render(__class__, array('employees' => $employees));
   }
 
@@ -47,11 +45,15 @@ class EmployeeController extends Controller
     var_dump($res);
   }
 
-  function update($employeeId)
+  function update($employee)
   {
+    $model = new EmployeeModel();
+    $model->updateEmployee($employee);
   }
 
   function delete($employeeId)
   {
+    $model = new EmployeeModel();
+    $model->deleteEmployee($employeeId[0]);
   }
 }

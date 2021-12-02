@@ -1,4 +1,4 @@
-const dataPath = "../employee/getAllEmployees";
+const dataPath = "../Employee/getAllEmployees";
 //const controllerEmpl = "./library/employeeController.php";
 function changePage({ item }) {
     window.location.replace(`employee.php?employeeId=${item.id}`)
@@ -20,18 +20,14 @@ $.ajax(dataPath).done(function (employeesData) {
         autoload: true,
         rowClick: changePage,
 
-        onItemInserted: function(item) {
-          console.log(item)
-        },
-
         controller: {
             insertItem: function (item) {
-              console.log(item);
                 return $.ajax({
                     type: "POST",
-                    url: '../employee/add',
+                    url: '../Employee/add',
                     data: JSON.stringify(item),
                     success: function () {
+                        console.log(item)
                         //document.location.reload(true);
                     }
                 })
@@ -39,18 +35,20 @@ $.ajax(dataPath).done(function (employeesData) {
 
             deleteItem: (item) => $.ajax({
                 type: "POST",
-                url: "../employee/delete",
+                url: "../Employee/delete",
                 data: item,
                 success: function () {
+                    console.log(item.id)
                     //document.location.reload(true);
                 }
             }),
 
             updateItem: (item) => $.ajax({
                 type: "POST",
-                url: '../employee/update',
-                data: JSON.stringify({ 'data': item }),
+                url: '../Employee/update',
+                data: JSON.stringify(item),
                 success: function () {
+                    console.log(item)
                     //document.location.reload(true);
 
                 }
